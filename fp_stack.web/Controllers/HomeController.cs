@@ -5,14 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using fp_stack.web.Models;
+using fp_stack.core.Models;
 
 namespace fp_stack.web.Controllers
 {
     public class HomeController : Controller
     {
+        private Context _context;
+
+        public HomeController(Context context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Nome = "Rodolfo";
+            ViewData["NomeDoAluno"] = $"Outro Nome {DateTime.Now}";
+
+            return View(_context.Perguntas.ToList());
         }
 
         public IActionResult About()
