@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace fp_stack.web
+namespace fp_stack.api
 {
     public class Program
     {
