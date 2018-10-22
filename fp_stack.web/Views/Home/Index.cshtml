@@ -5,7 +5,7 @@
 
 }
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+@*<script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -13,45 +13,149 @@
     $.get("https://localhost:5001/api/v1.0/perguntas/", function (data, status) {
         console.log("Data: " + data);
     });
-</script>
-
-
-
-
-
+</script>*@
 
 
 
 <div class="row">
-    <div class="col-md-3">
-        <email mail-to="rodolfo"></email>
-        <img src="~/images/cat.JPG" asp-append-version="true" />
+    <div id="carroseul">
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <ul>
+                    <li>
+                        <img class="carroseulimage" src="~/assets/dims.jpeg" />
+                    </li>
+                    <li>
+                        <img class="carroseulimage" src="~/assets/gamemaster.jpg" />
+                    </li>
+                    <li>
+                        <img class="carroseulimage" src="~/assets/Gorgeous-Cisco-Wallpaper.jpg" />
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                       <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            </div>
+            <div>	    </div>
+         
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>ViewBag @ViewBag.Nome</h2>
-        <h2>ViewData @ViewData["NomeDoAluno"]</h2>
-        <h2>ViewData @ViewData["Nome"]</h2>
+</div>
 
-        <p> Twitter @@rodolfofadino</p>
-    </div>
-    <div class="col-md-3">
+<script>
+    (function ($) {
+        $(function () {
+            var jcarousel = $('.jcarousel');
 
-        <vc:noticias total="10" noticias-urgentes="true"></vc:noticias>
+            jcarousel
+                .on('jcarousel:reload jcarousel:create', function () {
+                    var carousel = $(this),
+                        width = carousel.innerWidth();
 
-        @*@await Component.InvokeAsync("Noticias", new { total = 3, noticiasUrgentes = false })*@
-    </div>
-    <div class="col-md-3">
-        <h2>Lista de Perguntas</h2>
+
+                    carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+                })
+                .jcarousel({
+                    wrap: 'circular'
+                });
+
+            $('.jcarousel-control-prev')
+                .jcarouselControl({
+                    target: '-=1'
+                });
+
+            $('.jcarousel-control-next')
+                .jcarouselControl({
+                    target: '+=1'
+                });
+
+            $('.jcarousel-pagination')
+                .on('jcarouselpagination:active', 'a', function () {
+                    $(this).addClass('active');
+                })
+                .on('jcarouselpagination:inactive', 'a', function () {
+                    $(this).removeClass('active');
+                })
+                .on('click', function (e) {
+                    e.preventDefault();
+                })
+                .jcarouselPagination({
+                    perPage: 1,
+                    item: function (page) {
+                        return '<a href="#' + page + '">' + page + '</a>';
+                    }
+                });
+        });
+    })(jQuery);
+</script>
+
+<div class="row">
+    <div id="menu">
         <ul>
-            @foreach (var item in Model)
-            {
-                <li>
-                    @*<textarea asp-for="@item.Autor"></textarea>*@
-                    <p>@item.Id</p>
-                    <p>@item.Texto</p>
-                    <label asp-for="@item"></label>
-                </li>
-            }
+            <li>
+                <img class="icon" src="~/assets/category/acer.JPG" />
+                Acer
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/apple.JPG" />
+                Apple
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/asus.JPG" />
+                Asus
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/black.JPG" />
+                Black
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/blue.JPG" />
+                Blue
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/carton.JPG" />
+                Cartoon
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/computer.JPG" />
+                Computer
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/lenovo.JPG" />
+                Lenovo
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/pink.JPG" />
+                Pink
+            </li>
+            <li>
+                <img class="icon" src="~/assets/category/rose.JPG" />
+                Rose
+            </li>
         </ul>
     </div>
+</div>
+
+<div class="row">
+    <div id="noticias">
+        <vc:noticias total="10" noticias-urgentes="true"></vc:noticias>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <h2>Lista de Perguntas</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @*<textarea asp-for="@item.Autor"></textarea>*@
+                <p>@item.Id</p>
+                <p>@item.Texto</p>
+                <label asp-for="@item"></label>
+            </li>
+        }
+    </ul>
 </div>

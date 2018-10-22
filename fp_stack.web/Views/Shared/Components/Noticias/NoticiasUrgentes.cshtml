@@ -1,9 +1,14 @@
 ﻿@model IEnumerable<fp_stack.core.Models.Noticia>
-<ul>
+<ul class="noticias">
     @foreach (var item in Model)
     {
-        <li style="background-color:#ffc9c9;">
-            @item.Titulo
+        <li>
+            <a href="@item.Url">
+                <img src="@item.Imagem" alt="@item.DescricaoImagem" />
+                <span>
+                    @item.Titulo
+                </span>
+            </a>
         </li>
     }
 </ul>
