@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using fp_stack.web.Models;
 using fp_stack.core.Models;
+using System.Collections.Generic;
 
 namespace fp_stack.web.Controllers
 {
@@ -20,7 +21,8 @@ namespace fp_stack.web.Controllers
             ViewBag.Nome = "Rodolfo";
             ViewData["NomeDoAluno"] = $"Outro Nome {DateTime.Now}";
 
-            return View(_context.Perguntas.ToList());
+            return View(new List<Pergunta>());
+            //return View(_context.Perguntas.ToList());
         }
 
         public IActionResult About()

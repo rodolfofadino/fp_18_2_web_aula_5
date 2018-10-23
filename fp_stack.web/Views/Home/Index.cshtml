@@ -6,14 +6,14 @@
 }
 
 @*<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script type="text/javascript">
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
 
-    $.get("https://localhost:5001/api/v1.0/perguntas/", function (data, status) {
-        console.log("Data: " + data);
-    });
-</script>*@
+        $.get("https://localhost:5001/api/v1.0/perguntas/", function (data, status) {
+            console.log("Data: " + data);
+        });
+    </script>*@
 
 
 
@@ -23,7 +23,7 @@
             <div class="jcarousel">
                 <ul>
                     <li>
-                        <img class="carroseulimage" src="~/assets/dims.jpeg" />
+                        <img class="carroseulimage" src="~/assets/dims.jpeg" asp-append-version="true" />
                     </li>
                     <li>
                         <img class="carroseulimage" src="~/assets/gamemaster.jpg" />
@@ -35,13 +35,94 @@
             </div>
             <div>
                 <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                       <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
             </div>
             <div>	    </div>
-         
+
         </div>
     </div>
 </div>
+
+
+<div class="row">
+    <div id="menu">
+        <ul>
+            <li>
+                @*<img class="icon" src="~/assets/category/acer.JPG" />*@
+                <div class="categorias acer"></div>
+                Acer
+            </li>
+            <li>
+                <div class="categorias apple"></div>
+
+                Apple
+            </li>
+            <li>
+                <div class="categorias asus"></div>
+                Asus
+            </li>
+            <li>
+                <div class="categorias black"></div>
+
+                Black
+            </li>
+            <li>
+                <div class="categorias blue"></div>
+                Blue
+            </li>
+            <li>
+                <div class="categorias carton"></div>
+
+                Cartoon
+            </li>
+            <li>
+                <div class="categorias computer"></div>
+
+                Computer
+            </li>
+            <li>
+                <div class="categorias lenovo"></div>
+
+                Lenovo
+            </li>
+            <li>
+                <div class="categorias pink"></div>
+
+                Pink
+            </li>
+            <li>
+                <div class="categorias rose"></div>
+
+                Rose
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div id="noticias">
+        <vc:noticias total="10" noticias-urgentes="true"></vc:noticias>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <h2>Lista de Perguntas</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                @*<textarea asp-for="@item.Autor"></textarea>*@
+                <p>@item.Id</p>
+                <p>@item.Texto</p>
+                <label asp-for="@item"></label>
+            </li>
+        }
+    </ul>
+</div>
+
+
 
 <script>
     (function ($) {
@@ -89,73 +170,3 @@
         });
     })(jQuery);
 </script>
-
-<div class="row">
-    <div id="menu">
-        <ul>
-            <li>
-                <img class="icon" src="~/assets/category/acer.JPG" />
-                Acer
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/apple.JPG" />
-                Apple
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/asus.JPG" />
-                Asus
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/black.JPG" />
-                Black
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/blue.JPG" />
-                Blue
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/carton.JPG" />
-                Cartoon
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/computer.JPG" />
-                Computer
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/lenovo.JPG" />
-                Lenovo
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/pink.JPG" />
-                Pink
-            </li>
-            <li>
-                <img class="icon" src="~/assets/category/rose.JPG" />
-                Rose
-            </li>
-        </ul>
-    </div>
-</div>
-
-<div class="row">
-    <div id="noticias">
-        <vc:noticias total="10" noticias-urgentes="true"></vc:noticias>
-    </div>
-</div>
-
-
-<div class="row">
-
-    <h2>Lista de Perguntas</h2>
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li>
-                @*<textarea asp-for="@item.Autor"></textarea>*@
-                <p>@item.Id</p>
-                <p>@item.Texto</p>
-                <label asp-for="@item"></label>
-            </li>
-        }
-    </ul>
-</div>
